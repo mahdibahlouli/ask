@@ -1,0 +1,28 @@
+# Protect captured data directory
+<Files ".captured_data">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect PHP files from direct access
+<Files "capture.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Allow only POST requests to capture.php
+<Files "capture.php">
+    <LimitExcept POST>
+        Deny from all
+    </LimitExcept>
+</Files>
+
+# Hide .captured_data directory
+RedirectMatch 403 /\.captured_data(/.*)?$
+
+# Additional security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>

